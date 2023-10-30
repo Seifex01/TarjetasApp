@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -64,20 +65,8 @@ fun Tarjeta() {
     ){
         CuadranteTop(
             titulo = stringResource(R.string.titulo) ,
-            subtitulo = stringResource(R.string.subtitulo)
-        )/*
-        CuadranteBotUno(
-            miTelefono = stringResource(R.string.textoTelefono),
-            miGithub = stringResource(R.string.textoGithub),
-            miCorreo = stringResource(R.string.textoEmail),
+            subtitulo = stringResource(R.string.subtitulo),
         )
-        CuadranteBotDos(
-            lenguajeUno = stringResource(R.string.lenguajeUno),
-            lenguajeDos = stringResource(R.string.lenguajeDos),
-            lenguajeTres = stringResource(R.string.lenguajeTres),
-            lenguajeCuatro = stringResource(R.string.lenguajeCuatro),
-            lenguajeCinco = stringResource(R.string.lenguajeCinco)
-        )*/
 
         var cuadranteActivo by remember {
             mutableStateOf(true)
@@ -103,10 +92,14 @@ fun Tarjeta() {
         }
 
         Button(
+            modifier = Modifier.size(124.dp, 60.dp),
             onClick = {cuadranteActivo = !cuadranteActivo}
         )
         {
-            Text(stringResource(id = R.string.textoBoton))
+            Text(
+                stringResource(id = R.string.textoBoton),
+                fontSize = (18.sp)
+            )
         }
     }
 }
@@ -120,8 +113,7 @@ fun CuadranteTop(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .height(300.dp)
-            .padding(16.dp),
+            .padding(start = 16.dp, end = 16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -140,7 +132,7 @@ fun CuadranteTop(
             textAlign = TextAlign.Center,
             fontFamily = PlayfairDisplay,
             fontWeight = FontWeight.Bold,
-            fontSize = 24.sp
+            fontSize = 28.sp
         )
         Text(
             text = subtitulo,
@@ -150,7 +142,7 @@ fun CuadranteTop(
             fontFamily = PlayfairDisplay,
             fontWeight = FontWeight.SemiBold,
             fontStyle = FontStyle.Italic,
-            fontSize = 16.sp
+            fontSize = 17.sp
         )
     }
 }
@@ -164,20 +156,25 @@ fun CuadranteBotUno(
     parteUnoDeDos:String,
     modifier: Modifier = Modifier
 ){
+    Text(
+        text = datosContacto,
+        modifier = Modifier
+            .padding(top=32.dp, start = 32.dp)
+            .fillMaxWidth(),
+    )
+
     Column(
         modifier = modifier
-            .height(304.dp)
-            .padding(8.dp),
+            .height(200.dp)
+            .width(300.dp)
+            .padding(start = 16.dp, end =16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            text = datosContacto,
-            modifier = Modifier,
-        )
+
         Row(
             modifier = modifier
-                .padding(top = 16.dp, bottom = 8.dp)
+                .padding(top = 8.dp, bottom = 8.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
         )
@@ -193,6 +190,7 @@ fun CuadranteBotUno(
                 modifier = Modifier.padding(8.dp),
             )
         }
+
         Row(
             modifier = modifier
                 .padding(top = 8.dp, bottom = 8.dp)
@@ -211,6 +209,7 @@ fun CuadranteBotUno(
                 modifier = Modifier.padding(8.dp)
             )
         }
+
         Row(
             modifier = modifier
                 .padding(top = 8.dp, bottom = 8.dp)
@@ -229,16 +228,13 @@ fun CuadranteBotUno(
                 modifier = Modifier.padding(8.dp)
             )
         }
-        Row(
-            modifier
 
-        )
-        {Text(
-            text = parteUnoDeDos,
-            modifier = Modifier
-                .padding(top = 8.dp, bottom = 8.dp)
-        )}
     }
+    Text(
+        text = parteUnoDeDos,
+        modifier = Modifier
+            .padding(8.dp)
+    )
 }
 
 @Composable
@@ -251,26 +247,29 @@ fun CuadranteBotDos(
     lenguajeCinco: String,
     parteDosDeDos: String
 ){
+    Text(
+        text = lenguajes,
+        modifier = Modifier
+            .padding(top=32.dp, start = 32.dp)
+            .fillMaxWidth(),
+
+    )
     Column(
         modifier = Modifier
-            //.width(200.dp)
-            .height(304.dp)
-            .padding(8.dp),
+            .height(200.dp)
+            .fillMaxWidth()
+            .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
 
         ){
-        Text(
-            text = lenguajes,
-            modifier = Modifier
-                .padding(top = 8.dp, bottom = 8.dp)
-        )
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp, bottom = 8.dp),
-
+                .padding(8.dp)
+                .weight(1f),
+            horizontalArrangement = Arrangement.Center,
             ){
             val java_logo = painterResource(R.drawable.java_logo)
             Image(
@@ -278,17 +277,16 @@ fun CuadranteBotDos(
                 contentDescription = null,
                 modifier = Modifier
                     .padding(8.dp)
-                    .size(56.dp),
+                    .size(96.dp),
 
                 )
-
             val kotlin_logo = painterResource(R.drawable.kotlin_logo)
             Image(
                 painter = kotlin_logo,
                 contentDescription = null,
                 modifier = Modifier
                     .padding(8.dp)
-                    .size(56.dp),
+                    .size(96.dp),
             )
             val xml_logo = painterResource(R.drawable.xml_logo)
             Image(
@@ -296,14 +294,18 @@ fun CuadranteBotDos(
                 contentDescription = null,
                 modifier = Modifier
                     .padding(8.dp)
-                    .size(56.dp),
-            )
+                    .size(96.dp)
 
+
+            )
         }
+
         Row (
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp, bottom = 8.dp)
+                .padding(8.dp)
+                .weight(1f),
+            horizontalArrangement = Arrangement.Center,
         ){
             val html_logo = painterResource(R.drawable.html_logo)
             Image(
@@ -311,30 +313,24 @@ fun CuadranteBotDos(
                 contentDescription = null,
                 modifier = Modifier
                     .padding(8.dp)
-                    .size(56.dp),
+                    .size(96.dp),
             )
-
             val css_logo = painterResource(R.drawable.css_logo)
             Image(
                 painter = css_logo,
                 contentDescription = null,
                 modifier = Modifier
-                    .padding(8.dp)
-                    .size(56.dp),
+                    .padding(top = 12.dp,bottom = 8.dp)
+                    .size(90.dp),
             )
-
         }
-        Text(
-            text = parteDosDeDos,
-            modifier = Modifier
-                .padding(top = 8.dp, bottom = 8.dp)
-        )
     }
+    Text(
+            text = parteDosDeDos,
+    modifier = Modifier
+        .padding(8.dp)
+    )
 }
-
-
-
-
 @Preview(showBackground = true)
 @Composable
 fun TarjetaPreview() {
