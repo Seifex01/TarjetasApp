@@ -166,7 +166,7 @@ fun CuadranteBotUno(
     Column(
         modifier = modifier
             .height(200.dp)
-            .width(300.dp)
+            .fillMaxWidth()
             .padding(start = 16.dp, end =16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
