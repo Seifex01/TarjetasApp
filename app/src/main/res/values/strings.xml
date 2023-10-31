@@ -5,7 +5,7 @@
     <string name="datosContacto">Datos de contacto:</string>
     <string name="textoTelefono">(+34) 456 123 789</string>
     <string name="textoGithub">/Seifex01</string>
-    <string name="textoEmail">Seifex01@users.noreply.github.com</string>
+    <string name="textoEmail">gjosefelix98@gmail.com</string>
     <string name="parteUnoDeDos">1/2</string>
     <string name="lenguajes">Experiencia con:</string>
     <string name="lenguajeUno">Java</string>
@@ -14,5 +14,5 @@
     <string name="lenguajeCuatro">CSS</string>
     <string name="lenguajeCinco">XML</string>
     <string name="parteDosDeDos">2/2</string>
-    <string name="textoBoton">Púlsame</string>
+    <string name="textoBoton">Pulsar</string>
 </resources>

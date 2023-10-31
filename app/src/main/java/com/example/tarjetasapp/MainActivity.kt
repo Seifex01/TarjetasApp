@@ -79,7 +79,6 @@ fun Tarjeta() {
                 titulo = stringResource(R.string.titulo),
                 subtitulo = stringResource(R.string.subtitulo),
             )
-
             var cuadranteActivo by remember {
                 mutableStateOf(true)
             }
@@ -102,9 +101,9 @@ fun Tarjeta() {
                     parteDosDeDos = stringResource(R.string.parteDosDeDos),
                 )
             }
-
             Button(
-                modifier = Modifier.size(124.dp, 60.dp),
+                modifier = Modifier
+                    .size(124.dp, 60.dp),
                 onClick = { cuadranteActivo = !cuadranteActivo }
             )
             {
@@ -130,7 +129,7 @@ fun CuadranteTop(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val imagen = painterResource(id = R.drawable.imagen_android)
+        val imagen = painterResource(id = R.drawable.avatar_android)
         Image(
             painter = imagen,
             contentDescription = null,
@@ -216,7 +215,7 @@ fun CuadranteBotUno(
             verticalAlignment = Alignment.CenterVertically
         )
         {
-            val icono_github = painterResource(id = R.drawable.logo_github_oscuro)
+            val icono_github = painterResource(id = R.drawable.logo_github)
             Image(
                 painter = icono_github,
                 contentDescription = null,
@@ -321,7 +320,6 @@ fun CuadranteBotDos(
 
             )
         }
-
         Row (
             modifier = Modifier
                 .fillMaxWidth()
@@ -342,7 +340,7 @@ fun CuadranteBotDos(
                 painter = css_logo,
                 contentDescription = null,
                 modifier = Modifier
-                    .padding(top = 12.dp, bottom = 8.dp)
+                    .padding(8.dp)
                     .size(90.dp),
             )
         }
@@ -354,6 +352,7 @@ fun CuadranteBotDos(
             .padding(8.dp)
     )
 }
+
 @Preview(showBackground = true)
 @Composable
 fun TarjetaPreview() {
