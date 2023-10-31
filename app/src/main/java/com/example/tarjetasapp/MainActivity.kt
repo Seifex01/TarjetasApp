@@ -5,15 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -25,6 +25,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -55,51 +58,61 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Tarjeta() {
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-
-    ){
-        CuadranteTop(
-            titulo = stringResource(R.string.titulo) ,
-            subtitulo = stringResource(R.string.subtitulo),
+    Box {
+        val fondo = painterResource(id = R.drawable.fondo_app_android)
+        Image(
+            painter = fondo,
+            contentDescription = null,
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier
+                .matchParentSize()
         )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
 
-        var cuadranteActivo by remember {
-            mutableStateOf(true)
-        }
-        if (cuadranteActivo){
-            CuadranteBotUno(
-                datosContacto = stringResource(R.string.datosContacto),
-                miTelefono = stringResource(R.string.textoTelefono),
-                miGithub = stringResource(R.string.textoGithub),
-                miCorreo = stringResource(R.string.textoEmail),
-                parteUnoDeDos = stringResource(R.string.parteUnoDeDos))
-        }
-        else{
-            CuadranteBotDos(
-                lenguajes = stringResource(R.string.lenguajes),
-                lenguajeUno = stringResource(R.string.lenguajeUno),
-                lenguajeDos = stringResource(R.string.lenguajeDos),
-                lenguajeTres = stringResource(R.string.lenguajeTres),
-                lenguajeCuatro = stringResource(R.string.lenguajeCuatro),
-                lenguajeCinco = stringResource(R.string.lenguajeCinco),
-                parteDosDeDos = stringResource(R.string.parteDosDeDos),
+        ) {
+            CuadranteTop(
+                titulo = stringResource(R.string.titulo),
+                subtitulo = stringResource(R.string.subtitulo),
             )
-        }
 
-        Button(
-            modifier = Modifier.size(124.dp, 60.dp),
-            onClick = {cuadranteActivo = !cuadranteActivo}
-        )
-        {
-            Text(
-                stringResource(id = R.string.textoBoton),
-                fontSize = (18.sp)
+            var cuadranteActivo by remember {
+                mutableStateOf(true)
+            }
+            if (cuadranteActivo) {
+                CuadranteBotUno(
+                    datosContacto = stringResource(R.string.datosContacto),
+                    miTelefono = stringResource(R.string.textoTelefono),
+                    miGithub = stringResource(R.string.textoGithub),
+                    miCorreo = stringResource(R.string.textoEmail),
+                    parteUnoDeDos = stringResource(R.string.parteUnoDeDos)
+                )
+            } else {
+                CuadranteBotDos(
+                    lenguajes = stringResource(R.string.lenguajes),
+                    lenguajeUno = stringResource(R.string.lenguajeUno),
+                    lenguajeDos = stringResource(R.string.lenguajeDos),
+                    lenguajeTres = stringResource(R.string.lenguajeTres),
+                    lenguajeCuatro = stringResource(R.string.lenguajeCuatro),
+                    lenguajeCinco = stringResource(R.string.lenguajeCinco),
+                    parteDosDeDos = stringResource(R.string.parteDosDeDos),
+                )
+            }
+
+            Button(
+                modifier = Modifier.size(124.dp, 60.dp),
+                onClick = { cuadranteActivo = !cuadranteActivo }
             )
+            {
+                Text(
+                    stringResource(id = R.string.textoBoton),
+                    fontSize = (18.sp)
+                )
+            }
         }
     }
 }
@@ -122,10 +135,12 @@ fun CuadranteTop(
             painter = imagen,
             contentDescription = null,
             modifier = Modifier
-                .size(136.dp)
+                .size(144.dp)
+                .clip(CircleShape),
         )
         Text(
             text = titulo,
+            color = Color.White,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp, bottom = 16.dp),
@@ -136,6 +151,7 @@ fun CuadranteTop(
         )
         Text(
             text = subtitulo,
+            color = Color.White,
             modifier = Modifier
                 .fillMaxWidth(),
             textAlign = TextAlign.Center,
@@ -154,20 +170,21 @@ fun CuadranteBotUno(
     miGithub: String,
     miCorreo: String,
     parteUnoDeDos:String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier//.background(Color.Red)
 ){
     Text(
         text = datosContacto,
+        color = Color.White,
         modifier = Modifier
-            .padding(top=32.dp, start = 32.dp)
-            .fillMaxWidth(),
+            .padding(top = 32.dp, start = 32.dp)
+            .fillMaxWidth()
     )
 
     Column(
         modifier = modifier
             .height(200.dp)
             .fillMaxWidth()
-            .padding(start = 16.dp, end =16.dp),
+            .padding(start = 16.dp, end = 16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -187,6 +204,7 @@ fun CuadranteBotUno(
             )
             Text(
                 text = miTelefono,
+                color = Color.White,
                 modifier = Modifier.padding(8.dp),
             )
         }
@@ -206,6 +224,7 @@ fun CuadranteBotUno(
             )
             Text(
                 text = miGithub,
+                color = Color.White,
                 modifier = Modifier.padding(8.dp)
             )
         }
@@ -225,6 +244,7 @@ fun CuadranteBotUno(
             )
             Text(
                 text = miCorreo,
+                color = Color.White,
                 modifier = Modifier.padding(8.dp)
             )
         }
@@ -232,6 +252,7 @@ fun CuadranteBotUno(
     }
     Text(
         text = parteUnoDeDos,
+        color = Color.White,
         modifier = Modifier
             .padding(8.dp)
     )
@@ -249,8 +270,9 @@ fun CuadranteBotDos(
 ){
     Text(
         text = lenguajes,
+        color = Color.White,
         modifier = Modifier
-            .padding(top=32.dp, start = 32.dp)
+            .padding(top = 32.dp, start = 32.dp)
             .fillMaxWidth(),
 
     )
@@ -320,15 +342,16 @@ fun CuadranteBotDos(
                 painter = css_logo,
                 contentDescription = null,
                 modifier = Modifier
-                    .padding(top = 12.dp,bottom = 8.dp)
+                    .padding(top = 12.dp, bottom = 8.dp)
                     .size(90.dp),
             )
         }
     }
     Text(
-            text = parteDosDeDos,
-    modifier = Modifier
-        .padding(8.dp)
+        text = parteDosDeDos,
+        color = Color.White,
+        modifier = Modifier
+            .padding(8.dp)
     )
 }
 @Preview(showBackground = true)
